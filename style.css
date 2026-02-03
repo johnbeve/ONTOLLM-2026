@@ -1,60 +1,288 @@
+:root {
+  --bg-main: #0f172a;       /* deep slate */
+  --bg-card: #ffffff;
+
+  --text-main: #1a1a1a;
+  --text-muted: #555;
+
+  --accent: #38bdf8;        /* AI blue */
+  --accent-2: #a78bfa;     /* ontology violet */
+  --accent-soft: #e0f2fe;
+
+  --border-light: #e5e7eb;
+
+  --max-width: 1000px;
+  --radius: 10px;
+}
+
+/* ---------- Base ---------- */
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  line-height: 1.6;
-  color: #111;
-  background: #fff;
+  font-family: "Inter", "Segoe UI", Helvetica, Arial, sans-serif;
+  background: #f3f4f6;
+  color: var(--text-main);
+  line-height: 1.65;
+  font-size: 16px;
 }
 
-header {
+/* ---------- Hero Header ---------- */
+
+.hero {
+  position: relative;
+  min-height: 45vh;
+  background:
+    linear-gradient(135deg,
+      rgba(15, 23, 42, 0.85),
+      rgba(88, 28, 135, 0.75)
+    ),
+    url("assets/ai-ontology-convergence.jpg") center / cover no-repeat;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top,
+    rgba(56, 189, 248, 0.25),
+    transparent 60%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
   max-width: 900px;
-  margin: 2.5rem auto 1.5rem;
-  padding: 0 1rem;
+  padding: 2rem;
 }
 
-h1 {
-  margin-bottom: 0.3rem;
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 25px rgba(56, 189, 248, 0.35);
 }
 
-.subtitle {
-  font-size: 1.1rem;
+.hero .subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  opacity: 0.95;
 }
 
-.meta {
-  font-size: 0.9rem;
-  color: #555;
+.hero .meta {
+  font-size: 1rem;
+  opacity: 0.85;
 }
+
+/* ---------- Hero Shimmer ---------- */
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.08) 45%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.08) 55%,
+    transparent 70%
+  );
+  transform: translateX(-100%);
+  animation: shimmer 8s infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0%   { transform: translateX(-120%); }
+  50%  { transform: translateX(120%); }
+  100% { transform: translateX(120%); }
+}
+
+
+/* ---------- Navigation ---------- */
 
 nav {
-  max-width: 900px;
-  margin: 1rem auto;
-  padding: 0 1rem;
+  background: #020617;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 nav a {
-  margin-right: 1rem;
+  color: #e5e7eb;
   text-decoration: none;
+  padding: 0.9rem 1.2rem;
+  font-weight: 500;
+  transition: all 0.25s ease;
 }
+
+nav a:hover {
+  background: linear-gradient(
+    135deg,
+    var(--accent),
+    var(--accent-2)
+  );
+  color: #020617;
+  border-radius: 6px;
+}
+
+/* ---------- Main ---------- */
 
 main {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+  max-width: var(--max-width);
+  margin: 3rem auto;
+  padding: 0 1.2rem;
 }
+
+/* ---------- Section Cards ---------- */
+
+section {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 2.2rem 2.5rem;
+  margin-bottom: 2.5rem;
+  box-shadow:
+    0 20px 35px -15px rgba(0,0,0,0.15),
+    0 0 0 1px rgba(0,0,0,0.04);
+}
+
+/* ---------- Headings ---------- */
 
 h2 {
-  margin-top: 2.5rem;
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  position: relative;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
+h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  border-radius: 999px;
+}
+
+
+h3 {
+  margin-top: 1.6rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+/* ---------- Lists ---------- */
+
+ul {
+  padding-left: 1.4rem;
+}
+
+ul li {
+  margin-bottom: 0.5rem;
+}
+
+/* ---------- Notes ---------- */
 
 .note {
-  font-size: 0.9rem;
-  color: #555;
+  margin-top: 1.2rem;
+  padding: 1rem 1.2rem;
+  background: linear-gradient(
+    135deg,
+    #e0f2fe,
+    #ede9fe
+  );
+  border-left: 5px solid var(--accent-2);
+  border-radius: 6px;
+  font-size: 0.95rem;
 }
 
-footer {
-  max-width: 900px;
-  margin: 3rem auto 2rem;
-  padding: 0 1rem;
-  font-size: 0.85rem;
-  color: #666;
+/* ---------- Links ---------- */
+
+a {
+  color: var(--accent-2);
 }
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  section {
+    padding: 1.6rem 1.8rem;
+  }
+}
+
+section {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeUp 0.9s ease forwards;
+}
+
+section:nth-of-type(1) { animation-delay: 0.05s; }
+section:nth-of-type(2) { animation-delay: 0.12s; }
+section:nth-of-type(3) { animation-delay: 0.18s; }
+section:nth-of-type(4) { animation-delay: 0.24s; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+section:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 30px 50px -20px rgba(0,0,0,0.25),
+    0 0 0 1px rgba(0,0,0,0.04);
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent),
+    var(--accent-2),
+    transparent
+  );
+  margin: 3rem 0;
+  opacity: 0.6;
+}
+
